@@ -1,12 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Welcome to My Catering Website</h1>
-</body>
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Catering</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>My Catering</h1>
+      <p>Solusi hidangan terbaik untuk setiap acaramu.</p>
+    </header>
+
+    <main>
+      <section id="menu-section">
+        <h2>Daftar Menu</h2>
+        <p id="loading-text">Sedang mengambil data menu dari server...</p>
+
+        <div id="menu-container" class="menu-grid"></div>
+      </section>
+
+      <section id="order-section">
+        <h2>Pesan Sekarang</h2>
+        <form id="order-form">
+          <div class="form-group">
+            <label for="nama">Nama Lengkap:</label>
+            <input
+              type="text"
+              id="nama"
+              required
+              placeholder="Masukkan nama lu"
+            />
+          </div>
+          <div class="form-group">
+            <label for="catatan">Catatan Pesanan:</label>
+            <textarea
+              id="catatan"
+              rows="4"
+              required
+              placeholder="Contoh: 50 Nasi Kotak, 20 Tumpeng Mini..."
+            ></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Kirim Pesanan</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 My Catering. All rights reserved.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+  </body>
 </html>
-cobacoba
