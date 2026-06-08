@@ -4,7 +4,328 @@
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+/* VARIABEL WARNA & FONT */
+:root {
+    --bg-dark: #0a0a0a;
+    --text-white: #ffffff;
+    --text-gray: #a3a3a3;
+    --accent-orange: #f59e0b;
+    --accent-hover: #d97706;
+    
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Poppins', sans-serif;
+    --font-cursive: 'Great Vibes', cursive;
+}
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+}
+
+/* BUTTONS */
+.btn {
+    padding: 10px 24px;
+    border-radius: 30px;
+    border: none;
+    font-family: var(--font-body);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--accent-orange);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+    transform: scale(1.05);
+}
+
+.highlight {
+    color: var(--accent-orange);
+}
+
+.cursive-text {
+    font-family: var(--font-cursive);
+    color: var(--accent-orange);
+    font-size: 2rem;
+    display: block;
+    margin-bottom: -10px;
+}
+
+/* NAVBAR */
+.navbar {
+    padding: 20px 50px;
+    position: fixed; /* Membuat navbar menempel di layar */
+    top: 0;
+    left: 0;
+    width: 100%; /* Mengisi lebar penuh */
+    z-index: 1000; /* Memastikan navbar selalu berada di atas elemen lain */
+    justify-content: flex-end;
+    
+    /* Menambahkan efek background blur agar teks tetap terbaca saat discroll */
+    background-color: rgba(10, 10, 10, 0.85); 
+    backdrop-filter: blur(10px); /* Efek kaca (glassmorphism) */
+    -webkit-backdrop-filter: blur(10px); /* Dukungan untuk browser Safari */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Garis batas tipis di bawah */
+    
+    transition: all 0.3s ease;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--text-white);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+.nav-links a.active {
+    color: var(--accent-orange);
+    font-weight: 500;
+}
+
+.arrow {
+    font-size: 0.6rem;
+    vertical-align: middle;
+}
+
+/* HERO SECTION */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px 10%;
+    min-height: 80vh;
+    position: relative;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 500px;
+}
+
+.hero-content h1 {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.main-bowl {
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 15px solid #1a1a1a;
+    box-shadow: 0 0 50px rgba(245, 158, 11, 0.2);
+}
+
+/* PROMO BANNER */
+.promo-container {
+    padding: 0 10%;
+    margin-top: -50px;
+    position: relative;
+    z-index: 10;
+}
+
+.promo-banner {
+    background-color: #ffffff;
+    color: #000;
+    border-radius: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.promo-text h2 {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.avatars {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatars small {
+    color: #666;
+}
+
+.promo-divider {
+    width: 2px;
+    height: 60px;
+    background-color: #e5e5e5;
+}
+
+.promo-discount p {
+    font-size: 1.1rem;
+}
+
+.promo-discount strong {
+    font-size: 1.8rem;
+    color: #000;
+}
+
+.promo-image img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* FEATURED SECTION */
+.featured-section {
+    padding: 100px 10%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+}
+
+/* MENU CARDS (GLASSMORPHISM) */
+/* --- MENU CARDS (VERTICAL LAYOUT IN HORIZONTAL SCROLL) --- */
+
+.menu-scroll-wrapper {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    padding: 20px 0 40px 0; /* Tambahan padding agar box-shadow tidak terpotong */
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+}
+
+.menu-scroll-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.menu-card {
+    display: flex;
+    flex-direction: column; /* Mengubah susunan menjadi atas ke bawah */
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 20px;
+    
+    /* Ukuran kartu diperkecil lebarnya karena formatnya vertikal */
+    min-width: 320px; 
+    max-width: 320px;
+    flex-shrink: 0; 
+    scroll-snap-align: center; 
+    transition: all 0.3s ease;
+}
+
+.menu-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+}
+
+.card-image {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.card-image img {
+    width: 100%;
+    height: 220px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.card-content {
+    flex: 1; /* Mendorong footer ke paling bawah jika teks pendek */
+    text-align: center; /* Membuat teks di tengah */
+}
+
+.card-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+
+.card-content p {
+    color: var(--text-gray);
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.cursive-text {
+    font-size: 1.5rem;
+    margin-bottom: 0px;
+}
+
+/* Bagian bawah kartu (Harga & Tombol) */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    margin-top: auto;
+}
+
+.price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-white);
+}
+
+.btn-small {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border-radius: 20px;
+}
+
+/* --- RESPONSIVE UNTUK LAYAR KECIL --- */
+@media (max-width: 768px) {
+    .menu-card {
+        min-width: 85vw; /* Di HP, kartu mengambil hampir layar penuh */
+        max-width: 85vw;
+    }
+}
 body {
   background-color: #f4f7f6;
   color: #333;
