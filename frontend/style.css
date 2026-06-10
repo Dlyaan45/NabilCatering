@@ -11,6 +11,16 @@
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Poppins', sans-serif;
     --font-cursive: 'Great Vibes', cursive;
+    
+    /* VARIABEL BARU (Sebelumnya Hilang/Belum Dideklarasikan) */
+    --navbar-height: 70px;
+    --nav-bg: rgba(22, 22, 22, 0.75);
+    --text-dim: #bbbbbb;
+    --text-white: #ffffff;
+    --text-gold: #f4a261;
+    --accent: #e76f51;
+    --accent-glow: rgba(231, 111, 81, 0.4);
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -50,7 +60,7 @@ body {
     font-family: var(--font-body);
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transition);
 }
 
 .btn-primary {
@@ -69,69 +79,140 @@ body {
     font-size: 0.85rem;
 }
 
-
+/* ==========================================================================
+   NAVBAR & NAVIGATION
+   ========================================================================== */
 .navbar {
     position: fixed;
-    top: 0px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
+    top: 20px;
+    width: 95%;
     max-width: 1200px;
-    background: rgba(22, 22, 22, 0.6);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    height: var(--nav-height);
+    background-color: var(--nav-bg);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 50px;
-    padding: 10px 40px; /* Diperkecil sedikit padding atas-bawahnya */
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
     z-index: 1000;
-    
-    /* PENTING: Mengaktifkan Space-Between agar logo di kiri & menu di kanan */
+}
+.nav-left {
     display: flex;
-    justify-content: space-between; 
     align-items: center;
+    gap: 12px;                     
 }
 
-/* Pengaturan Ukuran Gambar Logo */
-.logo img {
-    height: 40px; /* Atur tinggi logo agar pas dengan navbar */
-    width: auto;  /* Lebar otomatis proporsional */
-    display: block;
-    transition: transform 0.3s ease;
-}
-
-.logo img:hover {
-    transform: scale(1.05); /* Efek membesar sedikit saat di-hover */
-}
-
-.nav-links {
+/* Mengatur isi kelompok kanan agar berjejer ke samping */
+.nav-right {
     display: flex;
-    list-style: none;
-    gap: 35px;
     align-items: center;
+    gap: 20px;                      
 }
 
-.nav-links a {
-    color: var(--text-primary);
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
     text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: color 0.3s ease;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+}
+
+.brand-name {
+    font-family: var(--font-cursive);
+    color: var(--text-white);
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: -0.5px;
+}
+.nav-list {
+    list-style: none;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 15px;
+}
+.nav-item {
+    position: relative;
 }
 
-.nav-links a:hover, .nav-links a.active {
-    color: var(--accent-gold);
+.nav-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-dim);
+    background: rgba(255, 255, 255, 0.03);
+    height: 45px;
+    min-width: 45px;
+    /* Perfect circle initially */
+    padding: 0 12px;
+    border-radius: 25px;
+    transition: var(--transition);
+    overflow: hidden;
+    border: 1px solid transparent;
+}
+/* Icon Styling */
+.icon {
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Text Label (Hidden by default) */
+.label {
+    max-width: 0;
+    opacity: 0;
+    white-space: nowrap;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: 0.7s;
+    padding-left: 0;
 }
 
-.arrow {
-    font-size: 0.6rem;
-    transition: transform 0.3s;
+.btn-pesan {
+    background: linear-gradient(135deg, #7b2cbf, #e63946); /* Gradasi warna ungu ke pink/merah */
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
-
-.nav-links a:hover .arrow {
-    transform: rotate(180deg);
+/* Hover Animations (Slide Out) */
+.nav-link:hover {
+    min-width: 110px;
+    /* Expands width */
+    background-color: var(--accent);
+    color: var(--text-white);
+    box-shadow: 0 0 20px var(--accent-glow);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+.nav-link:hover .label {
+    max-width: 150px;
+    /* Reveal text */
+    opacity: 1;
+    padding-left: 10px;
+}
+/* Specialized CTA (Optional: Last item looks different) */
+.nav-item:last-child .nav-link {
+    background: linear-gradient(135deg, #6366f1, var(--accent));
+    color: white;
+    min-width: 45px;
+}
+.nav-item:last-child .label {
+    max-width: 150px;
+    opacity: 1;
+    padding-left: 10px;
 }
 
 /* ==========================================================================
@@ -155,7 +236,7 @@ body {
 
 .hero-content h1 {
     font-family: var(--font-heading);
-    font-size: 4.5rem;
+    font-size: 4rem;
     line-height: 1.1;
     margin-bottom: 20px;
 }
@@ -174,7 +255,6 @@ body {
     position: relative;
 }
 
-/* Efek cahaya di belakang mangkuk makanan */
 .hero-image::before {
     content: '';
     position: absolute;
@@ -292,7 +372,6 @@ body {
     vertical-align: middle;
 }
 
-/* Scrollable Menu Cards */
 .menu-scroll-wrapper {
     display: flex;
     gap: 30px;
@@ -320,7 +399,7 @@ body {
     border-radius: 20px;
     padding: 20px;
     scroll-snap-align: start;
-    transition: transform 0.3s ease;
+    transition: var(--transition);
     border: 1px solid rgba(255,255,255,0.02);
 }
 
@@ -367,6 +446,191 @@ body {
     color: var(--accent-gold);
 }
 
+
+.booking-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-dark);
+    padding: 40px 20px;
+}
+
+/* Container Form (Card Gelap) */
+.booking-container {
+    position: relative;
+    width: 600px;
+    max-width: 100%;
+    padding: 40px;
+    background-color: var(--bg-card);
+    border: 1px solid rgba(244, 162, 97, 0.15); /* Border tipis warna gold */
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 20px rgba(244, 162, 97, 0.05);
+    text-align: center;
+}
+
+/* =========================================
+   TYPOGRAPHY
+========================================= */
+.booking-container h2 {
+    color: var(--accent-gold);
+    font-family: var(--font-heading); /* Menggunakan font heading Playfair */
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.booking-container p {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 35px;
+}
+
+/* =========================================
+   FORM GROUP & INPUTS
+========================================= */
+.booking-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Label Input */
+.form-group h3 {
+    color: var(--text-dim);
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+    padding-left: 5px;
+}
+
+/* Styling Input, Select, Textarea */
+.booking-form input,
+.booking-form select,
+.booking-form textarea {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 15px;
+    outline: none;
+    transition: var(--transition);
+}
+
+/* Placeholder */
+.booking-form input::placeholder,
+.booking-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Efek saat Input diklik (Glow warna Accent/Gold) */
+.booking-form input:focus,
+.booking-form select:focus,
+.booking-form textarea:focus {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 15px var(--accent-glow);
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+/* Dropdown Options */
+.booking-form select option {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+}
+
+/* Ikon Kalender */
+.booking-form input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Membuat ikon jadi putih */
+    cursor: pointer;
+    opacity: 0.6;
+    transition: var(--transition);
+}
+.booking-form input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
+
+
+
+/* =========================================
+   CONTACT SECTION (TEMA GELAP & LEBIH KECIL)
+========================================= */
+
+.contact-section {
+    padding: 50px 20px; /* Diperkecil dari 80px 10% agar tidak terlalu memakan ruang */
+    background-color: var(--bg-dark); /* Menggunakan background paling gelap */
+}
+
+.contact-container {
+    max-width: 900px; /* Diperkecil dari 1200px */
+    margin: auto;
+    text-align: center;
+}
+
+.contact-container h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem; /* Diperkecil dari 2.5rem */
+    color: var(--accent-gold); /* Diubah menjadi warna emas tema kita */
+    margin-bottom: 10px; /* Jarak diperkecil */
+    font-weight: 700;
+}
+
+.contact-container > p {
+    color: var(--text-muted); /* Warna teks abu-abu terang */
+    font-size: 0.9rem; /* Ukuran font lebih kecil */
+    margin-bottom: 30px; /* Jarak diperkecil dari 40px */
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Jarak antar kartu diperkecil dari 30px */
+    flex-wrap: wrap;
+}
+
+/* Styling Kotak Info Kontak */
+.contact-item {
+    background-color: var(--bg-card); /* Menggunakan warna card gelap */
+    border: 1px solid rgba(244, 162, 97, 0.15); /* Border emas tipis agar elegan */
+    padding: 20px; /* Diperkecil dari 25px */
+    width: 220px; /* Lebar kartu diperkecil dari 280px */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); /* Shadow digelapkan agar cocok dengan background hitam */
+    transition: var(--transition);
+}
+
+.contact-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(244, 162, 97, 0.1); /* Efek glow emas tipis saat di-hover */
+}
+
+.contact-item h3 {
+    font-size: 1.1rem; /* Tulisan judul di dalam kotak diperkecil */
+    margin-bottom: 8px;
+    color: var(--accent-gold); /* Warna teks menjadi emas */
+}
+
+/* Menambahkan styling untuk teks/link di dalam kotak kontak */
+.contact-item p,
+.contact-item a {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    text-decoration: none;
+    line-height: 1.5;
+}
+
+.contact-item a:hover {
+    color: var(--accent-hover); /* Berubah menjadi oranye terang jika berupa link */
+}
+
 /* ==========================================================================
    RESPONSIVE DESIGN (MOBILE & TABLET)
    ========================================================================== */
@@ -374,7 +638,9 @@ body {
     .hero {
         flex-direction: column;
         text-align: center;
-        padding-top: 120px;
+        padding-top: 140px;
+        justify-content: center;
+        gap: 40px;
     }
     
     .hero-content h1 {
@@ -384,7 +650,7 @@ body {
     .promo-banner {
         flex-direction: column;
         text-align: center;
-        gap: 20px;
+        gap: 25px;
     }
     
     .promo-divider {
@@ -399,8 +665,9 @@ body {
 }
 
 @media (max-width: 768px) {
-    .nav-links {
-        display: none; /* Disembunyikan di mobile, Anda bisa menambahkan menu hamburger nantinya */
+    /* FIXED: Menghubungkan class yang benar (.nav-list bukan .nav-links) */
+    .nav-list {
+        display: none; /* Menyembunyikan menu di mobile */
     }
     
     .hero-content h1 {
@@ -412,3 +679,47 @@ body {
     }
 }
 
+@media (max-width: 768px) {
+            .header {
+                padding: 0 15px;
+            }
+
+            .brand-name {
+                display: none;
+                /* Only show logo on small screens */
+            }
+
+            .nav-list {
+                gap: 8px;
+            }
+
+            .label {
+                display: none;
+                /* Icons only on mobile for space */
+            }
+
+            .nav-link:hover {
+                min-width: 45px;
+            }
+
+            .nav-item:last-child .nav-link {
+                min-width: 45px;
+            }
+
+        }
+
+        @media (max-width: 432px) {
+            .nav-item {
+                max-width: 20px;
+            }
+
+            .nav-link .icon svg {
+                width: 16px;
+            }
+
+            .nav-list {
+                gap: 32px;
+                min-width: 100%;
+            }
+
+        }

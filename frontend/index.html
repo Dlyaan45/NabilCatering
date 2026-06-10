@@ -3,32 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Theme Food Landing Page</title>
+    <title>NabilCatering</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <nav class="navbar">
-        <a href="#" class="logo">
-            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80" alt="Logo" class="logo-image">
+        <a href="#home" class="brand">
+            <img src="../sources/logo.png" class="logo" alt="Nabil Ctrng">
+            <span class="brand-name">NabilCatering</span>
         </a>
-        <ul class="nav-links">
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="#">About US</a></li>
-            <li><a href="#">Menu <span class="arrow">▼</span></a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Contact <span class="arrow">▼</span></a></li>
-            <li><a href="#">Return Policy</a></li>
+        <ul class="nav-list">
+            <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="#FFFFFF">
+                                <path
+                                    d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
+                            </svg>
+                        </div>
+                        <span class="label">Home</span>
+                    </a>
+            </li>
+            <li class="nav-item">
+                    <a href="#menu" class="nav-link">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 640 640" width="24px"
+                                fill="#FFFFFF">
+                                <path
+                                    d="M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z" />
+                            </svg>
+                        </div>
+                        <span class="label">Menu</span>
+                    </a>
+                </li>
+            
+            
+            <li class="nav-item">
+                    <a href="#contact" class="nav-link">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 640 640" width="24px"
+                                fill="#FFFFFF">
+                                <path
+                                    d="M448 112C456.8 112 464 119.2 464 128L464 512C464 520.8 456.8 528 448 528L160 528C151.2 528 144 520.8 144 512L144 128C144 119.2 151.2 112 160 112L448 112zM160 64C124.7 64 96 92.7 96 128L96 512C96 547.3 124.7 576 160 576L448 576C483.3 576 512 547.3 512 512L512 128C512 92.7 483.3 64 448 64L160 64zM304 312C334.9 312 360 286.9 360 256C360 225.1 334.9 200 304 200C273.1 200 248 225.1 248 256C248 286.9 273.1 312 304 312zM272 352C227.8 352 192 387.8 192 432C192 440.8 199.2 448 208 448L400 448C408.8 448 416 440.8 416 432C416 387.8 380.2 352 336 352L272 352zM576 144C576 135.2 568.8 128 560 128C551.2 128 544 135.2 544 144L544 208C544 216.8 551.2 224 560 224C568.8 224 576 216.8 576 208L576 144zM560 256C551.2 256 544 263.2 544 272L544 336C544 344.8 551.2 352 560 352C568.8 352 576 344.8 576 336L576 272C576 263.2 568.8 256 560 256zM576 400C576 391.2 568.8 384 560 384C551.2 384 544 391.2 544 400L544 464C544 472.8 551.2 480 560 480C568.8 480 576 472.8 576 464L576 400z" />
+                            </svg>
+                        </div>
+                        <span class="label">Contact</span>
+                    </a>
+                </li>
+
+            <li class="nav-item">
+                    <a href="#login" class="btn-login nav-link">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 640 640" width="24px"
+                                fill="#FFFFFF">
+                                <path
+                                    d="M24 48C10.7 48 0 58.7 0 72C0 85.3 10.7 96 24 96L69.3 96C73.2 96 76.5 98.8 77.2 102.6L129.3 388.9C135.5 423.1 165.3 448 200.1 448L456 448C469.3 448 480 437.3 480 424C480 410.7 469.3 400 456 400L200.1 400C188.5 400 178.6 391.7 176.5 380.3L171.4 352L475 352C505.8 352 532.2 330.1 537.9 299.8L568.9 133.9C572.6 114.2 557.5 96 537.4 96L124.7 96L124.3 94C119.5 67.4 96.3 48 69.2 48L24 48zM208 576C234.5 576 256 554.5 256 528C256 501.5 234.5 480 208 480C181.5 480 160 501.5 160 528C160 554.5 181.5 576 208 576zM432 576C458.5 576 480 554.5 480 528C480 501.5 458.5 480 432 480C405.5 480 384 501.5 384 528C384 554.5 405.5 576 432 576z"/>
+                            </svg>
+                        </div>
+                        <span class="label">Login</span>
+                    </a>
+                </li>
         </ul>
     </nav>
 
-    <header class="hero">
+    <header id="home" class="hero">
         <div class="hero-content">
             <span class="cursive-text">Organic Food</span>
             <h1>Experience the <br><span class="highlight">Taste</span> of the World</h1>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-            <button class="btn btn-primary">Discover Our Menu</button>
+            <p> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+            <button href="#menu" class="btn btn-primary">Discover Our Menu</button>
+            <button href="#booking" class="btn btn-secondary">Order Now</button>
         </div>
         <div class="hero-image">
             <img src="">
@@ -104,7 +151,7 @@
                 </div>
             </div>
             
-            <div class="menu-card">
+            <div id="menu" class="menu-card">
                 <div class="card-image">
                     <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dish 4">
                 </div>
@@ -121,6 +168,84 @@
 
         </div>
     </section>
+
+    <section id="booking" class="booking-section">
+    <div class="booking-container">
+        <h2>Booking Catering</h2>
+        <p>Isi formulir berikut untuk melakukan pemesanan catering.</p>
+
+        <form class="booking-form">
+            <div class="form-group">
+                <h3>Nama Lengkap</h3>
+                <input type="text" placeholder="N***L H****d F****i" required>
+            </div>
+
+            <div class="form-group">
+                <h3>Telepon</h3>
+                <input type="tel" placeholder="08**********" required>
+            </div>
+
+            <div class="form-group">
+                <h3>Email</h3>
+                <input type="email" placeholder="example@gmail.com" required>
+            </div>
+
+            <div class="form-group">
+                <h3>Tanggal Acara</h3>
+                <input type="date" required>
+            </div>
+
+            <div class="form-group">
+                <h3>Jumlah Porsi</h3>
+                <input type="number" placeholder="Jumlah Porsi" min="1" required>
+            </div>
+
+            <div class="form-group">
+                <h3>Pilih Paket Catering</h3>
+                <select required>
+                    <option value="">Pilih Paket Catering</option>
+                    <option>Paket Sehat Premium</option>
+                    <option>Paket Western</option>
+                    <option>Paket Tradisional</option>
+                    <option>Paket Spesial</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <h3>Catatan</h3>
+                <textarea rows="5" placeholder="Catatan Tambahan"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Kirim Booking
+            </button>
+        </form>
+    </div>
+</section>
+
+    <section id="contact" class="contact-section">
+    <div class="contact-container">
+        <h2>Hubungi Kami</h2>
+        <p>Silakan hubungi kami untuk informasi lebih lanjut.</p>
+
+        <div class="contact-info">
+            <div class="contact-item">
+                <h3>📞 Telepon</h3>
+                <p>0812-3456-7890</p>
+            </div>
+
+            <div class="contact-item">
+                <h3>📧 Email</h3>
+                <p>info@nabilcatering.com</p>
+            </div>
+
+            <div class="contact-item">
+                <h3>📍 Alamat</h3>
+                <p>Jl. Raya Kragan, Rembang, Jawa Tengah</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 </body>
 </html>
