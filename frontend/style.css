@@ -447,6 +447,9 @@ body {
 }
 
 
+/* =========================================
+   LAYOUT UTAMA & CONTAINER
+========================================= */
 .booking-section {
     display: flex;
     justify-content: center;
@@ -456,52 +459,75 @@ body {
     padding: 40px 20px;
 }
 
-/* Container Form (Card Gelap) */
 .booking-container {
     position: relative;
-    width: 600px;
+    width: 950px; /* Lebar optimal untuk 2 kolom bersandingan */
     max-width: 100%;
     padding: 40px;
     background-color: var(--bg-card);
-    border: 1px solid rgba(244, 162, 97, 0.15); /* Border tipis warna gold */
+    border: 1px solid rgba(244, 162, 97, 0.15); /* Border emas tipis */
     border-radius: 24px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 20px rgba(244, 162, 97, 0.05);
-    text-align: center;
 }
 
-/* =========================================
-   TYPOGRAPHY
-========================================= */
 .booking-container h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
     color: var(--accent-gold);
-    font-family: var(--font-heading); /* Menggunakan font heading Playfair */
-    font-size: 2.2rem;
-    margin-bottom: 10px;
+    text-align: center;
+    margin-bottom: 5px;
     font-weight: 700;
-    letter-spacing: 1px;
 }
 
-.booking-container p {
+.booking-container > p {
     color: var(--text-muted);
-    font-size: 14px;
-    margin-bottom: 35px;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+}
+.title-underline {
+    width: 80px;
+    height: 2px;
+    background-color: var(--accent-gold);
+    margin: 0 auto 30px auto;
+}
+
+/* Wrapper Grid 2 Kolom Sesuai Gambar */
+.booking-content-wrapper {
+    display: flex;
+    gap: 35px;
+    align-items: stretch; /* Membuat tinggi kotak kanan sama dengan form kiri */
 }
 
 /* =========================================
-   FORM GROUP & INPUTS
+   KOLOM KIRI: STRUKTUR FORM & INPUT
 ========================================= */
 .booking-form {
+    flex: 1;
     display: flex;
     flex-direction: column;
+    gap: 18px; /* Jarak konstan antar baris form */
+}
+
+/* Pembagi 2 Kolom Kecil (Baris 1 & Baris 3) */
+.form-row-twin {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row-twin .form-group {
+    flex: 1;
+    margin-bottom: 0;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
     text-align: left;
 }
 
-/* Label Input */
-.form-group h3 {
+/* Style Label Baru dari HTML Anda */
+.input-label {
     color: var(--text-dim);
     font-size: 13px;
     font-weight: 500;
@@ -510,28 +536,28 @@ body {
     padding-left: 5px;
 }
 
-/* Styling Input, Select, Textarea */
+/* Efek Seragam untuk Input, Select, dan Textarea */
 .booking-form input,
 .booking-form select,
 .booking-form textarea {
     width: 100%;
     background-color: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 15px 20px;
+    padding: 14px 18px;
     border-radius: 12px;
     color: var(--text-primary);
     font-size: 15px;
     outline: none;
     transition: var(--transition);
+    box-sizing: border-box;
 }
 
-/* Placeholder */
 .booking-form input::placeholder,
 .booking-form textarea::placeholder {
     color: rgba(255, 255, 255, 0.3);
 }
 
-/* Efek saat Input diklik (Glow warna Accent/Gold) */
+/* Fokus Glow Emas */
 .booking-form input:focus,
 .booking-form select:focus,
 .booking-form textarea:focus {
@@ -540,24 +566,77 @@ body {
     background-color: rgba(255, 255, 255, 0.06);
 }
 
-/* Dropdown Options */
 .booking-form select option {
     background-color: var(--bg-card);
     color: var(--text-primary);
 }
 
-/* Ikon Kalender */
+/* Khusus Textarea (Kotak Besar Paling Bawah) */
+.booking-form textarea {
+    resize: none;
+    min-height: 120px;
+}
+
+/* Kalender */
 .booking-form input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1); /* Membuat ikon jadi putih */
+    filter: invert(1);
     cursor: pointer;
     opacity: 0.6;
+}
+
+/* Tombol Kirim */
+.btn-submit {
+    width: 100%;
+    background: linear-gradient(135deg, var(--accent-gold), #e76f51);
+    color: #fff;
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
     transition: var(--transition);
-}
-.booking-form input[type="date"]::-webkit-calendar-picker-indicator:hover {
-    opacity: 1;
+    margin-top: 10px;
 }
 
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(244, 162, 97, 0.3);
+}
 
+/* =========================================
+   KOLOM KANAN: PREVIEW BOX (PNG)
+========================================= */
+.booking-preview-side {
+    width: 320px; /* Lebar proporsional kotak kanan */
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(244, 162, 97, 0.15);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.preview-content {
+    text-align: center;
+}
+
+.preview-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.preview-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    font-weight: 400;
+}
 
 
 /* =========================================
@@ -665,17 +744,31 @@ body {
 }
 
 @media (max-width: 768px) {
-    /* FIXED: Menghubungkan class yang benar (.nav-list bukan .nav-links) */
-    .nav-list {
-        display: none; /* Menyembunyikan menu di mobile */
+    .navbar {
+        align-items: flex-start;
+        padding: 15px 20px;
+        gap: 15px;
     }
-    
-    .hero-content h1 {
-        font-size: 2.5rem;
+
+    /* Container pembungkus diaktifkan scroll-nya */
+    .nav-scroll-container {
+        width: 100%;
+        overflow-x: auto; /* Memungkinkan geser kiri-kanan */
+        scrollbar-width: none; /* Menghilangkan scrollbar di Firefox */
     }
-    
-    .menu-card {
-        min-width: 260px;
+
+    /* Menghilangkan scrollbar di Chrome, Safari, & Opera agar rapi */
+    .nav-scroll-container::-webkit-scrollbar {
+        display: none; 
+    }
+
+    .nav-items {
+        display: flex;
+        flex-wrap: nowrap; /* Memaksa menu tetap satu baris horizontal */
+        gap: 20px;
+        padding-bottom: 5px; /* Jarak aman biar tidak mentok bawah */
+        /* width: max-content; */
+        white-space: nowrap; 
     }
 }
 
@@ -723,3 +816,20 @@ body {
             }
 
         }
+
+@media (max-width: 768px) {
+    .booking-content-wrapper {
+        flex-direction: column;
+    }
+    
+    .booking-preview-side {
+        width: 100%;
+        min-height: 200px;
+        order: -1; /* Menaruh kotak PNG di atas form khusus layar HP */
+    }
+    
+    .form-row-twin {
+        flex-direction: column;
+        gap: 18px;
+    }
+}
