@@ -264,11 +264,22 @@ body {
 }
 
 .hero-image {
+    margin-right: 0px;
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    animation: memutar 10s linear infinite;
+}
+
+@keyframes memutar {
+    from {
+        transform: rotate(0deg); /* Posisi awal: 0 derajat */
+    }
+    to {
+        transform: rotate(360deg); /* Posisi akhir: putaran penuh 360 derajat */
+    }
 }
 
 .hero-image::before {
@@ -318,30 +329,6 @@ body {
     font-family: var(--font-heading);
     font-size: 2rem;
     margin-bottom: 15px;
-}
-
-.avatars {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.avatars span {
-    background: #333;
-    width: 35px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 2px solid var(--bg-card);
-    margin-left: -15px;
-}
-.avatars span:first-child { margin-left: 0; }
-
-.avatars small {
-    color: var(--text-muted);
-    margin-left: 10px;
 }
 
 .promo-divider {

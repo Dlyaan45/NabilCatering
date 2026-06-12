@@ -170,3 +170,4 @@ socket.on('menuUpdated', () => {
 
 // Load data pertama kali saat browser selesai membuka web
 document.addEventListener('DOMContentLoaded', renderMenu);
+
