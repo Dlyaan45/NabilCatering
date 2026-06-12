@@ -14,7 +14,7 @@ btnOrder.addEventListener("click", function () {
 });
 
 btnMenu.addEventListener("click", function () {
-    const target = document.getElementById("menu");
+    const target = document.getElementById("menuContainer");
     if (target) {
         target.scrollIntoView({ 
             behavior: 'smooth',

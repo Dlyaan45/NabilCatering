@@ -4,7 +4,7 @@ const http = require('http');
 const { Server } = require('socket.io'); 
 
 const app = express();
-const PORT = 3001;
+const PORT = 3000;
 
 // Membungkus Express ke Server HTTP agar mendukung WebSocket
 const server = http.createServer(app);
