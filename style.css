@@ -719,6 +719,9 @@ body {
 /* ==========================================================================
    RESPONSIVE DESIGN (MOBILE & TABLET)
    ========================================================================== */
+/* ==========================================================================
+   TAMPILAN TABLET & HP KECIL (Maksimal 992px)
+   ========================================================================== */
 @media (max-width: 992px) {
     .hero {
         flex-direction: column;
@@ -729,7 +732,7 @@ body {
     }
     
     .hero-content h1 {
-        font-size: 3.5rem;
+        font-size: 2.5rem; /* Dikecilkan sedikit dari 3.5rem agar tidak pecah di HP */
     }
     
     .promo-banner {
@@ -749,82 +752,56 @@ body {
     }
 }
 
+/* ==========================================================================
+   TAMPILAN STANDARD HP / MOBILE (Maksimal 768px)
+   ========================================================================== */
 @media (max-width: 768px) {
+    /* --- HEADER & NAVBAR --- */
+    .header {
+        padding: 0 15px;
+    }
+
+    .brand-name, .label {
+        display: none; /* Menyembunyikan teks brand dan label menu di HP agar hemat ruang */
+    }
+
     .navbar {
         align-items: flex-start;
         padding: 15px 20px;
         gap: 15px;
     }
 
-    /* Container pembungkus diaktifkan scroll-nya */
+    /* Pembungkus scroll horizontal menu */
     .nav-scroll-container {
-        width: 100%;
-        width : max-content; /* Lebar sesuai isi */
-        overflow-x: auto; /* Memungkinkan geser kiri-kanan */
-        scrollbar-width: none; /* Menghilangkan scrollbar di Firefox */
+        width: 100%; 
+        overflow-x: auto; 
+        white-space: nowrap;
+        scrollbar-width: none; /* Hilangkan scrollbar Firefox */
+        -webkit-overflow-scrolling: touch; /* Scroll lebih mulus di iPhone/iOS */
     }
 
-    /* Menghilangkan scrollbar di Chrome, Safari, & Opera agar rapi */
     .nav-scroll-container::-webkit-scrollbar {
-        display: none; 
+        display: none; /* Hilangkan scrollbar Chrome, Safari, Opera */
     }
 
     .nav-items {
         display: flex;
-        flex-wrap: nowrap; /* Memaksa menu tetap satu baris horizontal */
+        flex-wrap: nowrap; 
         gap: 20px;
-        padding-bottom: 5px; /* Jarak aman biar tidak mentok bawah */
-        /* width: max-content; */
-        white-space: nowrap; 
+        padding-bottom: 5px; 
     }
-}
 
-@media (max-width: 768px) {
-            .header {
-                padding: 0 15px;
-            }
+    .nav-list {
+        display: flex;
+        gap: 12px;
+    }
 
-            .brand-name {
-                display: none;
-                /* Only show logo on small screens */
-            }
+    .nav-link:hover,
+    .nav-item:last-child .nav-link {
+        min-width: 45px;
+    }
 
-            .nav-list {
-                gap: 8px;
-            }
-
-            .label {
-                display: none;
-                /* Icons only on mobile for space */
-            }
-
-            .nav-link:hover {
-                min-width: 45px;
-            }
-
-            .nav-item:last-child .nav-link {
-                min-width: 45px;
-            }
-
-        }
-
-        @media (max-width: 432px) {
-            .nav-item {
-                max-width: 20px;
-            }
-
-            .nav-link .icon svg {
-                width: 16px;
-            }
-
-            .nav-list {
-                gap: 32px;
-                min-width: 100%;
-            }
-
-        }
-
-@media (max-width: 768px) {
+    /* --- FORM & PREVIEW BOOKING --- */
     .booking-content-wrapper {
         flex-direction: column;
     }
@@ -832,11 +809,36 @@ body {
     .booking-preview-side {
         width: 100%;
         min-height: 200px;
-        order: -1; /* Menaruh kotak PNG di atas form khusus layar HP */
+        order: -1; /* Kotak gambar/PNG otomatis pindah ke atas Form saat di HP */
     }
     
     .form-row-twin {
         flex-direction: column;
         gap: 18px;
+    }
+}
+
+/* ==========================================================================
+   TAMPILAN HP SANGAT KECIL (Maksimal 432px)
+   ========================================================================== */
+@media (max-width: 432px) {
+    .nav-item {
+        flex: 1; /* Membagi ukuran tombol menu sama rata di layar super kecil */
+        text-align: center;
+    }
+
+    .nav-link .icon svg {
+        width: 18px; /* Disesuaikan agar tetap nyaman ditekan jari */
+        height: 18px;
+    }
+
+    .nav-list {
+        gap: 15px; /* Jarak disesuaikan agar tidak terlalu renggang/meluber keluar layar */
+        width: 100%;
+        justify-content: space-around;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem; /* Ukuran judul makin dikecilkan agar pas di layar hp mini */
     }
 }
