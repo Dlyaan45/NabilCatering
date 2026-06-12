@@ -759,6 +759,7 @@ body {
     /* Container pembungkus diaktifkan scroll-nya */
     .nav-scroll-container {
         width: 100%;
+        width : max-content; /* Lebar sesuai isi */
         overflow-x: auto; /* Memungkinkan geser kiri-kanan */
         scrollbar-width: none; /* Menghilangkan scrollbar di Firefox */
     }
