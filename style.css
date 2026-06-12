@@ -91,7 +91,7 @@ body {
     position: fixed;
     top: 0px;
     width: 100%;
-    max-width: 1500px;
+    max-width: 100%;
     height: var(--nav-height);
     background-color: var(--nav-bg);
     border: 1px solid rgba(255, 255, 255, 0.05);
