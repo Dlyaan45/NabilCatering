@@ -84,6 +84,15 @@ body {
     font-size: 0.85rem;
 }
 
+.btn-login.nav-link {
+    display: flex;          /* Memastikan ikon dan teks sejajar */
+    align-items: center;
+    cursor: pointer;        /* Mengubah kursor menjadi icon tangan saat diarahkan */
+    position: relative;
+    z-index: 9999;          /* Memaksa elemen berada di lapisan paling depan */
+    pointer-events: auto !important; /* Memastikan event klik tidak dimatikan oleh CSS lain */
+}
+
 /* ==========================================================================
    NAVBAR & NAVIGATION
    ========================================================================== */

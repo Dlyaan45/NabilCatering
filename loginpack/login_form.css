@@ -1,0 +1,177 @@
+/* style.css */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    /* Mengubah background menjadi hitam pekat sesuai gambar landing page */
+    background:#0a0908;
+    overflow:hidden;
+    position:relative;
+}
+
+/* Mengubah pendaran lingkaran di latar belakang menjadi aura oranye hangat */
+body::before{
+    content:'';
+    position:absolute;
+    width:450px;
+    height:450px;
+    background:radial-gradient(circle, rgba(234, 137, 90, 0.15) 0%, rgba(0,0,0,0) 70%);
+    border-radius:50%;
+    top:-100px;
+    left:-100px;
+}
+
+body::after{
+    content:'';
+    position:absolute;
+    width:350px;
+    height:350px;
+    background:radial-gradient(circle, rgba(234, 137, 90, 0.12) 0%, rgba(0,0,0,0) 70%);
+    border-radius:50%;
+    bottom:-100px;
+    right:-100px;
+}
+
+.container{
+    position:relative;
+    z-index:1;
+    width:430px;
+    backdrop-filter:blur(18px);
+    /* Glassmorphism disesuaikan agar lebih gelap dan menyatu dengan dark mode */
+    background:rgba(255, 255, 255, 0.03);
+    border:1px solid rgba(255, 255, 255, 0.08);
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 20px 50px rgba(0,0,0,.6);
+    color:white;
+}
+
+.container{
+    width:430px;
+    max-height:85vh;
+    overflow-y:auto;
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.logo h1{
+    font-size:28px;
+    font-weight:700;
+    color:#ffffff;
+}
+
+.logo p{
+    /* Mengubah teks deskripsi menjadi abu-abu soft agar tidak terlalu kontras */
+    color:#a0aec0;
+    font-size:14px;
+}
+
+.tabs{
+    display:flex;
+    background:rgba(255,255,255,.05);
+    border-radius:12px;
+    padding:5px;
+    margin-bottom:25px;
+    border:1px solid rgba(255,255,255,0.02);
+}
+
+.tabs button{
+    flex:1;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:transparent;
+    /* Warna tombol tab saat tidak aktif */
+    color:#a0aec0;
+    cursor:pointer;
+    transition:.3s;
+    font-weight:600;
+}
+
+/* Tombol Tab Aktif: Menggunakan background semi-transparan putih agar minimalis elegan */
+.tabs button.active{
+    background:rgba(255, 255, 255, 0.1);
+    color:white;
+}
+
+.form{
+    display:none;
+}
+
+.form.active{
+    display:block;
+}
+
+.input-group{
+    margin-bottom:14px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:8px;
+    font-size:14px;
+    color:#e2e8f0;
+}
+
+.input-group input{
+    width:100%;
+    padding:14px;
+    /* Memberikan border tipis transparan pada inputbox */
+    border:1px solid rgba(255, 255, 255, 0.08);
+    border-radius:12px;
+    background:rgba(255,255,255,.04);
+    color:white;
+    outline:none;
+    transition: 0.3s;
+}
+
+/* Efek saat kolom input diklik (fokus) akan memancarkan warna oranye tipis */
+.input-group input:focus {
+    border-color: rgba(234, 137, 90, 0.5);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.input-group input::placeholder{
+    /* Warna placeholder disesuaikan dengan skema dark */
+    color:#64748b;
+}
+
+/* TOMBOL UTAMA (Masuk / Daftar Sekarang): */
+/* Diubah dari gradasi putih menjadi gradasi Oranye/Terracotta persis tombol "Discover Our Menu" */
+.btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg, #f39c6b, #ea895a);
+    color:white;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 4px 15px rgba(234, 137, 90, 0.25);
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+    background:linear-gradient(135deg, #f5a67b, #ed9468);
+    box-shadow:0 6px 20px rgba(234, 137, 90, 0.35);
+}
+
+.footer{
+    text-align:center;
+    margin-top:15px;
+    font-size:13px;
+    color:#a0aec0;
+}

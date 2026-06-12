@@ -96,4 +96,61 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  //
+
+
+  
 });
+
+//#######################################
+//FORM LOGIN
+document.getElementById("btnLogin").addEventListener("click", function() {
+    window.location.href = "loginform.html";
+});
+
+
+
+
+// ########################################
+// DOM menu
+// client.js - Menampilkan menu catering realtime untuk pelanggan
+
+const channel = new BroadcastChannel('menu_sync');
+const STORAGE_KEY = 'menu_catering';
+
+function getMenus() {
+  return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+}
+
+function renderMenus(data) {
+  const wrapper = document.querySelector('#menuContainer .menu-scroll-wrapper');
+  if (!wrapper) return;
+
+  if (data.length === 0) {
+    wrapper.innerHTML = `<p>Belum ada menu tersedia.</p>`;
+    return;
+  }
+
+  wrapper.innerHTML = data.map(item => `
+    <div class="menu-card">
+      ${item.gambar
+        ? `<img src="${item.gambar}" alt="${item.nama}">`
+        : `<div class="img-placeholder">[${item.kategori}]</div>`}
+      <h3>${item.nama}</h3>
+      <span class="category">${item.kategori}</span>
+      <p class="price">Rp${item.harga}/-</p>
+      <p class="desc">${item.deskripsi}</p>
+    </div>
+  `).join('');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderMenus(getMenus());
+});
+
+channel.onmessage = (event) => {
+  if (event.data.type === 'update') {
+    renderMenus(event.data.data);
+  }
+};
