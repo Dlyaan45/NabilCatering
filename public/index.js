@@ -7,7 +7,7 @@ btnOrder.addEventListener("click", function () {
     const target = document.getElementById("booking");
     if (target) {
         target.scrollIntoView({ 
-            behavior: 'smooth', // Membuat efek scroll menjadi halus
+            behavior: 'smooth',
             block: 'start'
         });
     }
@@ -17,7 +17,7 @@ btnMenu.addEventListener("click", function () {
     const target = document.getElementById("menu");
     if (target) {
         target.scrollIntoView({ 
-            behavior: 'smooth', // Membuat efek scroll menjadi halus
+            behavior: 'smooth',
             block: 'start'
         });
     }
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const TOKEN_FONNTE = "VaNvZaYU7ABkQwYGMcDf";
 
       // NOMOR INI ADALAH NOMOR ADMIN YANG AKAN MENERIMA NOTIFIKASI
-      const NOMOR_TUJUAN = "62882003263436";
+      const NOMOR_TUJUAN = "6285743318451";
 
       try {
         const formData = new FormData();
@@ -105,52 +105,68 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //#######################################
 //FORM LOGIN
-document.getElementById("btnLogin").addEventListener("click", function() {
-    window.location.href = "loginform.html";
-});
+const btnLogin = document.getElementById("btnLogin");
 
+if (btnLogin) {
+    btnLogin.addEventListener("click", function() {
+        window.location.href = "loginform.html";
+    });
+}
 
 
 
 // ########################################
-// DOM menu
-// client.js - Menampilkan menu catering realtime untuk pelanggan
+//DOM MENU
+const socket = io(); // Nyalakan koneksi WebSocket
 
-const channel = new BroadcastChannel('menu_sync');
-const STORAGE_KEY = 'menu_catering';
-
-function getMenus() {
-  return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-}
-
-function renderMenus(data) {
-  const wrapper = document.querySelector('#menuContainer .menu-scroll-wrapper');
+async function renderMenu() {
+  const wrapper = document.querySelector('.menu-scroll-wrapper');
   if (!wrapper) return;
 
-  if (data.length === 0) {
-    wrapper.innerHTML = `<p>Belum ada menu tersedia.</p>`;
-    return;
-  }
+  try {
+    // 1. Ambil data asli ter-update dari API backend
+    const response = await fetch('/api/menu');
+    const menuData = await response.json();
 
-  wrapper.innerHTML = data.map(item => `
-    <div class="menu-card">
-      ${item.gambar
-        ? `<img src="${item.gambar}" alt="${item.nama}">`
-        : `<div class="img-placeholder">[${item.kategori}]</div>`}
-      <h3>${item.nama}</h3>
-      <span class="category">${item.kategori}</span>
-      <p class="price">Rp${item.harga}/-</p>
-      <p class="desc">${item.deskripsi}</p>
-    </div>
-  `).join('');
+    if (menuData.length === 0) {
+      wrapper.innerHTML = '<p class="empty-menu">Belum ada menu tersedia saat ini.</p>';
+      return;
+    }
+
+    // Bersihkan isi pembungkus untuk membuang layout lama
+    wrapper.innerHTML = '';
+
+    // 2. Loop array data, susun HTML, lalu pasang ke halaman
+    menuData.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'menu-card';
+      
+      card.innerHTML = `
+        <img src="${item.gambar || 'https://via.placeholder.com/280x180?text=No+Image'}" alt="${item.nama}" class="menu-image">
+        <div class="card-image-badge">
+          <span class="badge-kategori">${item.kategori}</span>
+        </div>
+        <div class="menu-info">
+          <h3 class="menu-name">${item.nama}</h3>
+          <p class="menu-desc">${item.deskripsi || 'Tidak ada deskripsi.'}</p>
+          <span class="menu-price">Rp ${parseInt(item.harga).toLocaleString('id-ID')}</span>
+        </div>
+      `;
+      wrapper.appendChild(card);
+    });
+
+  } catch (error) {
+    console.error("Gagal sinkronisasi data:", error);
+    wrapper.innerHTML = '<p class="empty-menu" style="color: #ff4757;">Gagal memuat data menu.</p>';
+  }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  renderMenus(getMenus());
+// ===== INTI REAL-TIME =====
+// Ketika server mengabarkan data berubah, jalankan kembali renderMenu() tanpa reload halaman
+socket.on('menuUpdated', () => {
+    console.log('Sinyal diterima: Sinkronisasi menu baru...');
+    renderMenu();
 });
 
-channel.onmessage = (event) => {
-  if (event.data.type === 'update') {
-    renderMenus(event.data.data);
-  }
-};
+// Load data pertama kali saat browser selesai membuka web
+document.addEventListener('DOMContentLoaded', renderMenu);

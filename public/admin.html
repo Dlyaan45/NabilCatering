@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin Catering</title>
+    <link href="admin.css" rel="stylesheet">
+</head>
+<body>
+
+    <h1>Dashboard Admin Catering</h1>
+    <button class="btn btn-add" id="addMenuBtn">Tambah Menu Baru</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Gambar</th>
+                <th>Nama Menu</th>
+                <th>Kategori</th>
+                <th>Harga</th>
+                <th>Deskripsi</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            </tbody>
+    </table>
+
+    <div id="crudModal" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Tambah Menu Baru</h3>
+            <form id="menuForm">
+                <div class="form-group">
+                    <label>Nama Menu *</label>
+                    <input type="text" id="foodName" required>
+                </div>
+                <div class="form-group">
+                    <label>Kategori *</label>
+                    <input type="text" id="foodCategory" required>
+                </div>
+                <div class="form-group">
+                    <label>Harga (Rp) *</label>
+                    <input type="number" id="foodPrice" required>
+                </div>
+                <div class="form-group">
+                    <label>Deskripsi</label>
+                    <textarea id="foodDesc" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Foto Menu</label>
+                    <input type="file" id="foodImg" accept="image/*">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn" id="closeModalBtn" style="background:#bdc3c7;">Batal</button>
+                    <button type="submit" class="btn style" style="background:#2ecc71; color:white;">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
