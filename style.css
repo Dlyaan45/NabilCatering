@@ -26,6 +26,7 @@
 * {
     margin: 0;
     padding: 0;
+    max-width: 100%;
     box-sizing: border-box;
 }
 
@@ -88,9 +89,9 @@ body {
    ========================================================================== */
 .navbar {
     position: fixed;
-    top: 20px;
-    width: 95%;
-    max-width: 1200px;
+    top: 0px;
+    width: 100%;
+    max-width: 1500px;
     height: var(--nav-height);
     background-color: var(--nav-bg);
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -98,7 +99,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 30px;
+    padding: 10px 30px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
     z-index: 1000;
@@ -112,6 +113,7 @@ body {
 /* Mengatur isi kelompok kanan agar berjejer ke samping */
 .nav-right {
     display: flex;
+    justify-content: flex-end; 
     align-items: center;
     gap: 20px;                      
 }
