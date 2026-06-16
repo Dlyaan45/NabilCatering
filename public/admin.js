@@ -1,4 +1,13 @@
-const socket = io(); 
+let socket = null;
+if (typeof io !== 'undefined') {
+  try {
+    socket = io();
+    socket.on('menuUpdated', renderTable);
+  } catch (err) {
+    console.warn('Socket.io tidak tersedia, fitur realtime dimatikan.');
+  }
+}
+
 let editId = null;
 
 async function getMenusFromServer() {
@@ -105,9 +114,6 @@ async function deleteMenu(id) {
   }
 }
 
-// Menangkap event realtime perubahan data untuk mengupdate tabel admin otomatis
-socket.on('menuUpdated', renderTable);
-
 document.addEventListener('DOMContentLoaded', () => {
   renderTable();
   document.getElementById('menuForm').addEventListener('submit', saveData);
@@ -121,16 +127,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
 const logoutBtn = document.querySelector('#btn-logout');
 
 logoutBtn.addEventListener('click', function (e) {
-  e.preventDefault(); // mencegah link "#" pindah ke atas halaman
-
-  // Hapus status login yang disimpan saat login tadi
+  e.preventDefault();
   sessionStorage.removeItem('isLoggedIn');
   sessionStorage.removeItem('role');
-
-  // Arahkan kembali ke halaman utama
   window.location.href = '/';
 });
