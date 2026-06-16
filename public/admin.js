@@ -132,5 +132,5 @@ logoutBtn.addEventListener('click', function (e) {
   sessionStorage.removeItem('role');
 
   // Arahkan kembali ke halaman utama
-  window.location.href = 'index.html';
+  window.location.href = '/';
 });
