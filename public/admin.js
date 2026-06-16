@@ -120,3 +120,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target.classList.contains('btn-delete')) deleteMenu(id);
   });
 });
+
+
+const logoutBtn = document.querySelector('#btn-logout');
+
+logoutBtn.addEventListener('click', function (e) {
+  e.preventDefault(); // mencegah link "#" pindah ke atas halaman
+
+  // Hapus status login yang disimpan saat login tadi
+  sessionStorage.removeItem('isLoggedIn');
+  sessionStorage.removeItem('role');
+
+  // Arahkan kembali ke halaman utama
+  window.location.href = 'index.html';
+});

@@ -105,14 +105,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //#######################################
 //FORM LOGIN
-const btnLogin = document.getElementById("btnLogin");
+document.addEventListener('DOMContentLoaded', function () {
+  let isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
 
-if (btnLogin) {
-    btnLogin.addEventListener("click", function() {
-        window.location.href = "loginform.html";
-    });
-}
+  const loginBtn      = document.getElementById('btn-login');
+  const userProfile    = document.getElementById('user-profile');
+  const profileTrigger = document.getElementById('profile-trigger');
+  const dropdownMenu   = document.getElementById('dropdown-menu');
+  const logoutBtn      = document.getElementById('logout-btn');
 
+  function renderAuthUI() {
+    if (isLoggedIn) {
+      loginBtn.classList.add('hidden');
+      userProfile.classList.remove('hidden');
+    } else {
+      loginBtn.classList.remove('hidden');
+      userProfile.classList.add('hidden');
+      dropdownMenu.classList.remove('show');
+    }
+  }
+
+  profileTrigger.addEventListener('click', function (e) {
+    e.stopPropagation();
+    dropdownMenu.classList.toggle('show');
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!userProfile.contains(e.target)) {
+      dropdownMenu.classList.remove('show');
+    }
+  });
+
+  logoutBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    sessionStorage.removeItem('isLoggedIn');
+    sessionStorage.removeItem('role');
+    window.location.href = '/';
+  });
+
+  renderAuthUI();
+});
 
 
 // ########################################
