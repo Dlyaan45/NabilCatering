@@ -1,28 +1,3 @@
-///##################################
-// BTN SCROLLING
-
-const btnOrder = document.querySelector("#btn-booking");
-const btnMenu = document.querySelector("#btn-menu");
-btnOrder.addEventListener("click", function () {
-    const target = document.getElementById("booking");
-    if (target) {
-        target.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
-        });
-    }
-});
-
-btnMenu.addEventListener("click", function () {
-    const target = document.getElementById("menuContainer");
-    if (target) {
-        target.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
-        });
-    }
-});
-
 // #######################################
 // BOOKING FORM HANDLER
 
@@ -103,72 +78,49 @@ document.addEventListener("DOMContentLoaded", () => {
   
 });
 
-//#######################################
-//FORM LOGIN
-document.addEventListener('DOMContentLoaded', function () {
-  let isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
-
-  const loginBtn      = document.getElementById('btn-login');
-  const userProfile    = document.getElementById('user-profile');
-  const profileTrigger = document.getElementById('profile-trigger');
-  const dropdownMenu   = document.getElementById('dropdown-menu');
-  const logoutBtn      = document.getElementById('logout-btn');
-
-  function renderAuthUI() {
-    if (isLoggedIn) {
-      loginBtn.classList.add('hidden');
-      userProfile.classList.remove('hidden');
-    } else {
-      loginBtn.classList.remove('hidden');
-      userProfile.classList.add('hidden');
-      dropdownMenu.classList.remove('show');
-    }
-  }
-
-  profileTrigger.addEventListener('click', function (e) {
-    e.stopPropagation();
-    dropdownMenu.classList.toggle('show');
-  });
-
-  document.addEventListener('click', function (e) {
-    if (!userProfile.contains(e.target)) {
-      dropdownMenu.classList.remove('show');
-    }
-  });
-
-  logoutBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    sessionStorage.removeItem('isLoggedIn');
-    sessionStorage.removeItem('role');
-    window.location.href = '/';
-  });
-
-  renderAuthUI();
-});
-
-
 // ########################################
 //DOM MENU
-const socket = io(); // Nyalakan koneksi WebSocket
+const socket = io(); // koneksi WebSocket
 
 async function renderMenu() {
-  const wrapper = document.querySelector('.menu-scroll-wrapper');
-  if (!wrapper) return;
+  const menubos = document.querySelector('.menu-scroll-wrapper');
+  const selectPaket = document.getElementById('paket'); // Definisikan selectPaket di sini
 
   try {
     // 1. Ambil data asli ter-update dari API backend
     const response = await fetch('/api/menu');
     const menuData = await response.json();
 
+    // ==========================================
+    // BAGIAN A: ISI OPTION FORMULIR SELEKSI PAKET
+    // ==========================================
+    if (selectPaket) {
+      // Kembalikan ke opsi default terlebih dahulu agar tidak menumpuk saat update real-time
+      selectPaket.innerHTML = '<option value="">Pilih Paket Catering</option>';
+
+      // Masukkan data nama paket dari CRUD ke dalam <option>
+      menuData.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.nama;       // Nilai yang dikirim saat form di-submit
+        option.textContent = item.nama; // Teks nama paket yang tampil di layar
+        selectPaket.appendChild(option);
+      });
+    }
+
+    // ==========================================
+    // BAGIAN B: RENDER MENU CARD
+    // ==========================================
+    if (!menubos) return; // Jika elemen wrapper menu tidak ada di halaman ini, stop proses render card
+
     if (menuData.length === 0) {
-      wrapper.innerHTML = '<p class="empty-menu">Belum ada menu tersedia saat ini.</p>';
+      menubos.innerHTML = '<p class="empty-menu">Belum ada menu tersedia saat ini.</p>';
       return;
     }
 
     // Bersihkan isi pembungkus untuk membuang layout lama
-    wrapper.innerHTML = '';
+    menubos.innerHTML = '';
 
-    // 2. Loop array data, susun HTML, lalu pasang ke halaman
+    // Loop array data, susun HTML, lalu pasang ke halaman
     menuData.forEach(item => {
       const card = document.createElement('div');
       card.className = 'menu-card';
@@ -184,12 +136,14 @@ async function renderMenu() {
           <span class="menu-price">Rp ${parseInt(item.harga).toLocaleString('id-ID')}</span>
         </div>
       `;
-      wrapper.appendChild(card);
+      menubos.appendChild(card);
     });
 
   } catch (error) {
     console.error("Gagal sinkronisasi data:", error);
-    wrapper.innerHTML = '<p class="empty-menu" style="color: #ff4757;">Gagal memuat data menu.</p>';
+    if (menubos) {
+      menubos.innerHTML = '<p class="empty-menu" style="color: #ff4757;">Gagal memuat data menu.</p>';
+    }
   }
 }
 
@@ -202,4 +156,3 @@ socket.on('menuUpdated', () => {
 
 // Load data pertama kali saat browser selesai membuka web
 document.addEventListener('DOMContentLoaded', renderMenu);
-

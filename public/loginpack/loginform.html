@@ -1,93 +1,44 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Form Login & Register</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="login_form.css">
-<style>
-    /* Style untuk pesan notifikasi/alert */
-    .alert {
-        padding: 10px;
-        border-radius: 5px;
-        margin-bottom: 15px;
-        font-size: 14px;
-        display: none;
-        text-align: center;
-    }
-    .alert-danger { background-color: #f8d7da; color: #721c24; }
-    .alert-success { background-color: #d4edda; color: #155724; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Login</title>
+    
+    <!-- Link Font Awesome untuk Ikon (User & Lock) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Link ke file CSS eksternal -->
+    <link rel="stylesheet" href="login_form.css">
 </head>
 <body>
 
-<div class="container">
-    <div class="home-navigation">
-        <a href="../index.html" class="btn-home">🏠Home</a>
+    <div class="login-container">
+        <div class="login-header">
+            <h2>Selamat Datang</h2>
+            <p>Silakan masuk ke akun Anda</p>
+        </div>
+        
+            
+            <!-- Input Username / Email -->
+        <form class="login-form">
+            <div class="input-group">
+                <i class="fa-solid fa-user input-icon"></i>
+                <input type="text" id="username" placeholder="Username" required>
+            </div>
+            
+            <!-- Input Password -->
+            <div class="input-group">
+                <i class="fa-solid fa-lock input-icon"></i>
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+            
+            <!-- Tombol Submit Login -->
+            <button type="submit" class="btn-login">Masuk</button>
+            
+        </form>
+        
     </div>
-
-    <div class="logo">
-        <h1>Nabil Catering</h1>
-        <p>Login atau Register untuk melanjutkan</p>
-    </div>
-
-    <div class="tabs">
-        <button class="active" onclick="showForm('login', this)">Login</button>
-        <button onclick="showForm('register', this)">Register</button>
-    </div>
-
-    <div id="alertMessage" class="alert"></div>
-
-    <form id="login" class="form active" onsubmit="handleLogin(event)">
-        <div class="input-group">
-            <label>Username</label>
-            <input type="text" id="loginUsername" placeholder="Masukkan username" required>
-        </div>
-
-        <div class="input-group">
-            <label>Password</label>
-            <input type="password" id="loginPassword" placeholder="Masukkan password" required>
-        </div>
-
-        <button type="submit" class="btn">Masuk</button>
-
-        <div class="footer">
-            Belum punya akun? <a href="#" onclick="showForm('register', document.querySelectorAll('.tabs button')[1]); return false;">Klik Register</a>
-        </div>
-    </form>
-
-    <form id="register" class="form" onsubmit="handleRegister(event)">
-        <div class="input-group">
-            <label>Nama Lengkap</label>
-            <input type="text" placeholder="Masukkan nama lengkap" required>
-        </div>
-
-        <div class="input-group">
-            <label>Email</label>
-            <input type="email" placeholder="Masukkan email" required>
-        </div>
-
-        <div class="input-group">
-            <label>Username</label>
-            <input type="text" placeholder="Buat username" required>
-        </div>
-
-        <div class="input-group">
-            <label>Password</label>
-            <input type="password" placeholder="Buat password" required>
-        </div>
-
-        <button type="submit" class="btn">Daftar Sekarang</button>
-
-        <div class="footer">
-            Sudah punya akun? <a href="#" onclick="showForm('login', document.querySelectorAll('.tabs button')[0]); return false;">Klik Login</a>
-        </div>
-    </form>
-
-</div>
-<script src="loginform.js"></script>
-
+ <script src="loginform.js"></script>
 </body>
 </html>

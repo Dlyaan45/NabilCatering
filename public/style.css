@@ -74,6 +74,7 @@ body {
     background: linear-gradient(45deg, var(--accent-gold), var(--accent-hover));
     color: #fff;
     box-shadow: 0 4px 15px rgba(244, 162, 97, 0.4);
+    text-decoration: none;
 }
 
 .btn-primary:hover {

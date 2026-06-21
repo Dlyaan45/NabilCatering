@@ -1,74 +1,45 @@
-function showForm(id, btn){
-    document.querySelectorAll('.form').forEach(el=>el.classList.remove('active'));
-    document.querySelectorAll('.tabs button').forEach(el=>el.classList.remove('active'));
-
-    document.getElementById(id).classList.add('active');
-    btn.classList.add('active');
-
-    // Sembunyikan alert setiap kali pindah tab
-    document.getElementById('alertMessage').style.display = 'none';
-}
-
-// Fungsi pembantu untuk memunculkan pesan (hilang otomatis dalam 3 detik)
-function showAlert(message, type) {
-    const alertBox = document.getElementById('alertMessage');
-    alertBox.textContent = message;
-    alertBox.className = `alert alert-${type}`;
-    alertBox.style.display = 'block';
-
-    setTimeout(() => {
-        alertBox.style.display = 'none';
-    }, 3000);
-}
-
-// LOGIKA PROSES LOGIN ADMIN
-function handleLogin(event) {
-    event.preventDefault(); // Mencegah halaman reload otomatis
-
-    const usernameInput = document.getElementById('loginUsername').value.trim();
-    const passwordInput = document.getElementById('loginPassword').value;
-
-    // Kredensial khusus Admin (Bisa kamu ganti sesuai keinginan)
-    const adminUsername = "admin"; 
-    const adminPassword = "admin123";
-
-    if (usernameInput === adminUsername && passwordInput === adminPassword) {
-        showAlert("Login Admin Sukses!", "success");
-        
-        // Simpan status session admin
-        sessionStorage.setItem('isLoggedIn', 'true');
-        sessionStorage.setItem('role', 'admin');
-
-        // Pindah ke admin.html yang berada di LUAR folder loginpack (mundur 1 folder dengan ../)
-        setTimeout(() => {
-            window.location.href = '../admin.html';
-        }, 1000);
-
-    } else {
-        // Logika untuk User Biasa jika username/password bukan admin
-        // Di sini langsung disimulasikan berhasil login ke index.html utama
-        showAlert("Login Berhasil! Selamat datang.", "success");
-        
-        sessionStorage.setItem('isLoggedIn', 'true');
-        sessionStorage.setItem('role', 'user');
-
-        setTimeout(() => {
-            // Jika index.html juga di luar folder, gunakan '../index.html'
-            window.location.href = '../index.html'; 
-        }, 1500);
-    }
-}
-
-
-// LOGIKA PROSES REGISTER (Hanya untuk User Biasa)
-function handleRegister(event) {
-    event.preventDefault();
+// Pastikan kode berjalan setelah seluruh komponen HTML selesai dimuat
+console.log("Script login.js berhasil dimuat");
+document.addEventListener("DOMContentLoaded", function () {
     
-    showAlert("Registrasi Berhasil! Silakan login.", "success");
-    document.getElementById('register').reset();
+    // 1. Ambil elemen form berdasarkan class-nya
+    const loginForm = document.querySelector(".login-form");
+    console.log("Form ditemukan:", loginForm);
 
-    // Otomatis pindah ke tab login setelah 2 detik
-    setTimeout(() => {
-        showForm('login', document.querySelectorAll('.tabs button')[0]);
-    }, 2000);
-}
+    // Pastikan form-nya ditemukan di halaman sebelum memasang event
+    if (loginForm) {
+        
+        // 2. Cegah form melakukan POST bawaan HTML, ganti dengan logika JS kita
+        loginForm.addEventListener("submit", function (event) {
+            event.preventDefault(); // <--- INI KUNCI UTAMA MENGHENTIKAN ERROR 404 POST
+
+            // 3. Ambil data input dari user
+            const usernameInput = document.getElementById('username').value.trim();
+            const passwordInput = document.getElementById('password').value;
+
+            // Kredensial khusus Admin
+            const adminUsername = "admin"; 
+            const adminPassword = "admin123";
+
+            // 4. Validasi Login
+            if (usernameInput === adminUsername && passwordInput === adminPassword) {
+                
+                // Simpan status session admin
+                sessionStorage.setItem('isLoggedIn', 'true');
+                sessionStorage.setItem('role', 'admin');
+
+                alert("Login Admin Sukses! Mengalihkan halaman...");
+
+                // 5. Pengalihan rute berdasarkan struktur folder Anda
+                // Karena login.html ada di /loginpack/ dan admin.html ada di folder public (induknya)
+                window.location.href = '../admin.html';
+
+            } else {
+                alert("Username atau Password salah!");
+            }
+        });
+        
+    } else {
+        console.error("Gagal mendeteksi formulir dengan class '.login-form'. Periksa kembali HTML Anda.");
+    }
+});
