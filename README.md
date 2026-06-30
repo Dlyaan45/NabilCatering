@@ -4,16 +4,26 @@ Web app untuk katalog menu dan pemesanan Nabil Catering, lengkap dengan dashboar
 
 ---
 
+## Tim Pengembang (Kelompok 25 - Kelas F)
+
+Project ini disusun dan dikembangkan oleh:
+
+| No | Nama | NIM |
+| :--- | :--- | :--- |
+| 1 | Moh Nur Septian | 202451174 |
+| 2 | M. Adlie Adi Ananva | 202451162 |
+| 3 | Nabil Hamid Fanani | 202451157 |
+| 4 | Shafi Wildan Sya'bana | 202451185 |
+
+---
+
 ## Fitur Utama
 
-* **Landing Page & Katalog Menu (`public/index.html`)**  
-  Halaman utama pelanggan untuk melihat daftar paket catering, detail harga, dan akses langsung ke form pemesanan. Desain sudah responsif (rapi di HP maupun laptop).
-  
-* **Autentikasi Admin (`public/loginpack/`)**  
-  Halaman login khusus untuk membatasi akses ke dashboard agar tidak bisa dimasuki oleh sembarang user.
+* **Landing Page & Katalog Menu (`public/index.html`)** Halaman utama pelanggan untuk melihat daftar paket catering, detail harga, dan akses langsung ke form pemesanan. Desain sudah responsif (rapi di HP maupun laptop).
+    
+* **Autentikasi Admin (`public/loginpack/`)** Halaman login khusus untuk membatasi akses ke dashboard agar tidak bisa dimasuki oleh sembarang user.
 
-* **Dashboard Kelola (`public/admin.html`)**  
-  Panel khusus admin yang berfungsi untuk memantau pesanan masuk serta memperbarui data katalog menu.
+* **Dashboard Kelola (`public/admin.html`)** Panel khusus admin yang berfungsi untuk memantau pesanan masuk serta memperbarui data katalog menu.
 
 ---
 
